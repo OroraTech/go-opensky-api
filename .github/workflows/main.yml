@@ -1,0 +1,19 @@
+name: Default CI
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  # This workflow contains a job called "test", which is run on every push
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build library
+        run: |
+          go build *.go
+      - name: Run tests
+        run: |
+          go test ./...
