@@ -279,7 +279,7 @@ func (c *Client) GetFlightsByAircraft(icao24 string, begin time.Time, end time.T
 // Parse a single state array from an unstructured states response.
 // The i parameter represents the index of the state element in the states response.
 func parseState(s []interface{}, i int) (state State, err error) {
-	if len(s) != 17 {
+	if len(s) < 17 {
 		err = fmt.Errorf("invalid state object at position %v: response contains %v values, expected 17", i, len(s))
 		return
 	}
